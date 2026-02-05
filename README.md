@@ -6,6 +6,8 @@ Automatically copies macOS screenshots to your clipboard the moment they're save
 
 macOS saves screenshots as files on your Desktop (or a custom folder), but doesn't put them on the clipboard. If you want to paste a screenshot into Slack, iMessage, or an email, you have to manually open the file and copy it first.
 
+> **Note:** macOS does have a built-in shortcut to capture directly to clipboard *without* saving a file: **Cmd+Ctrl+Shift+3** (full screen) or **Cmd+Ctrl+Shift+4** (selection). However, this skips saving the file entirely — you only get the clipboard copy. This script gives you **both**: a saved file *and* an automatic clipboard copy.
+
 ## How It Works
 
 The script uses `fswatch` to watch your screenshot folder. When a new screenshot appears, it copies the image to your clipboard using AppleScript.
