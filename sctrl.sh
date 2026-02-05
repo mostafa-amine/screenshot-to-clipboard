@@ -13,13 +13,14 @@ case "$1" in
         ;;
     stop)
         launchctl disable "$DOMAIN/$LABEL"
-        launchctl kill SIGTERM "$DOMAIN/$LABEL" 2>/dev/null
-        pkill -9 -f screenshot-to-clipboard.sh 2>/dev/null
+        launchctl bootout "$DOMAIN/$LABEL" 2>/dev/null
+        sleep 0.5
+        pkill -9 -f "screenshot-to-clipboard.sh" 2>/dev/null
         pkill -9 -f "fswatch.*Screenshot" 2>/dev/null
         echo "Stopped."
         ;;
     status)
-        if launchctl print "$DOMAIN/$LABEL" 2>/dev/null | grep -q "state = running"; then
+        if pgrep -f "screenshot-to-clipboard.sh" >/dev/null 2>&1; then
             echo "Running."
         else
             echo "Not running."
